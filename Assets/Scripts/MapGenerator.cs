@@ -16,7 +16,7 @@ public class MapGenerator : MonoBehaviour
 
     public DrawMode drawMode; // Current drawing mode
 
-    public const int mapChunkSize = 241; // Size of the map chunk
+    public const int mapChunkSize = 239; // Size of the map chunk
     [Range(0, 6)]
     public int editorPreviewLOD = 1; // Level of detail for the map
     public float noiseScale = 20f; // Scale of the noise
@@ -124,7 +124,7 @@ public class MapGenerator : MonoBehaviour
     }
     private MapData GenerateMapData(Vector2 centre)
     {
-        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize, mapChunkSize, noiseScale, seed, octaves, persistance, lacunarity, centre + offset, normalizeMode);
+        float[,] noiseMap = Noise.GenerateNoiseMap(mapChunkSize + 2, mapChunkSize + 2, noiseScale, seed, octaves, persistance, lacunarity, centre + offset, normalizeMode);
 
         Color[] colorMap = new Color[mapChunkSize * mapChunkSize];
         for (int x = 0; x < mapChunkSize; x++)
