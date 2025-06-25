@@ -18,6 +18,7 @@ public static class Noise
             float offsetY = prng.Next(-100000, 100000) - offset.y;
             octaveOffsets[i] = new Vector2(offsetX, offsetY);
             maxPossibleHeight += amplitude;
+            amplitude *= persistance;
         }
 
         if (scale <= 0)
@@ -26,8 +27,8 @@ public static class Noise
         }
         float[,] noiseMap = new float[width, height];
 
-        float maxNoiseHeight = float.MinValue;
-        float minNoiseHeight = float.MaxValue;
+        float maxLocalNoiseHeight = float.MinValue;
+        float minLocalNoiseHeight = float.MaxValue;
 
         float halfWidth = width / 2f;
         float halfHeight = height / 2f;
@@ -51,13 +52,13 @@ public static class Noise
                     amplitude *= persistance; // Decrease amplitude for next octave
                     frequency *= lacunarity; // Increase frequency for next octave
                 }
-                if (noiseHeight > maxNoiseHeight)
+                if (noiseHeight > maxLocalNoiseHeight)
                 {
-                    maxNoiseHeight = noiseHeight; // Track the maximum noise height
+                    maxLocalNoiseHeight = noiseHeight; // Track the maximum noise height
                 }
-                else if (noiseHeight < minNoiseHeight)
+                else if (noiseHeight < minLocalNoiseHeight)
                 {
-                    minNoiseHeight = noiseHeight; // Track the minimum noise height
+                    minLocalNoiseHeight = noiseHeight; // Track the minimum noise height
                 }
                 noiseMap[x, y] = noiseHeight;
             }
@@ -68,11 +69,12 @@ public static class Noise
             {
                 if (normalizeMode == NormalizeMode.Local)
                 {
-                    noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]); // Normalize the noise values to [0, 1]    
+                    noiseMap[x, y] = Mathf.InverseLerp(minLocalNoiseHeight, maxLocalNoiseHeight, noiseMap[x, y]); // Normalize the noise values to [0, 1]    
                 }
                 else
                 {
-
+                    float normalizedHeigth = (noiseMap[x, y] + 1) / (2 * maxPossibleHeight / 1.5f);
+                    noiseMap[x, y] = normalizedHeigth;
                 }
 
             }

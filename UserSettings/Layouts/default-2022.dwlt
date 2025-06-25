@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -346,7 +346,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -784,9 +784,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 75, z: -1277}
+    m_Target: {x: 3304.0613, y: -1010.67773, z: -42.75327}
     speed: 2
-    m_Value: {x: 0, y: 75, z: -1277}
+    m_Value: {x: 3304.0613, y: -1010.67773, z: -42.75327}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 2
@@ -832,13 +832,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.054667927, y: 0.75195366, z: -0.062854394, w: 0.65394163}
+    m_Target: {x: -0.11515091, y: 0.82881176, z: -0.1852596, w: -0.5152538}
     speed: 2
-    m_Value: {x: 0.05377914, y: 0.75106025, z: -0.061645366, w: 0.6551459}
+    m_Value: {x: -0.11542889, y: 0.8280395, z: -0.18508701, w: -0.5164974}
   m_Size:
-    m_Target: 3589.789
+    m_Target: 5679.1323
     speed: 2
-    m_Value: 3435.2048
+    m_Value: 5434.576
   m_Ortho:
     m_Target: 0
     speed: 2
