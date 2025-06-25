@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EndlessTerrain : MonoBehaviour
 {
+    const float scale = 1f;
     const float viewerMoveThresholdForChunkUpdate = 25f; // Threshold for updating terrain chunks based on viewer movement
     const float sqrViewerMoveThresholdForChunkUpdate = viewerMoveThresholdForChunkUpdate * viewerMoveThresholdForChunkUpdate; // Squared threshold for performance optimization
 
@@ -33,7 +34,7 @@ public class EndlessTerrain : MonoBehaviour
 
     void Update()
     {
-        viewerPosition = new Vector2(viewer.position.x, viewer.position.z); // Update the viewer's position
+        viewerPosition = new Vector2(viewer.position.x, viewer.position.z) / scale; // Update the viewer's position
         if ((lastViewerPosition - viewerPosition).sqrMagnitude > sqrViewerMoveThresholdForChunkUpdate)
         {
             lastViewerPosition = viewerPosition; // Update the last viewer position if the viewer has moved significantly
@@ -95,8 +96,9 @@ public class EndlessTerrain : MonoBehaviour
             meshRenderer.sharedMaterial = material; // Assign the material to the MeshRenderer
             meshFilter = meshObject.AddComponent<MeshFilter>(); // Add a MeshFilter component to the
 
-            meshObject.transform.position = positionV3; // Set the position of the mesh object
+            meshObject.transform.position = positionV3 * scale; // Set the position of the mesh object
             meshObject.transform.parent = parent; // Set the parent of the mesh object
+            meshObject.transform.localScale = Vector3.one * scale;
             mapGenerator.RequestMapData(position, OnMapDataReceived);
 
             lodMeshes = new LODMesh[detailLevels.Length]; // Initialize the LOD meshes array
@@ -120,7 +122,7 @@ public class EndlessTerrain : MonoBehaviour
         void OnMeshDataReceived(MeshData meshData)
         {
             meshFilter.mesh = meshData.CreateMesh(); // Create and assign the mesh to the MeshFilter  
-            
+
         }
 
         public void UpdateTerrainChunk()

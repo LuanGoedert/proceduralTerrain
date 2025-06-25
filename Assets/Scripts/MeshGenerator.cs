@@ -80,6 +80,11 @@ public class MeshData
         triangleIndex += 3; // Move to the next set of triangle indices
     }
 
+    Vector3 CalculateNormals()
+    {
+        throw new NotImplementedException();
+    }
+
     public Mesh CreateMesh()
     {
         Mesh mesh = new Mesh();
